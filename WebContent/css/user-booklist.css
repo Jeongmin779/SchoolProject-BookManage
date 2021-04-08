@@ -1,0 +1,5 @@
+@charset "EUC-KR";
+.col-md-2 > img{
+	width: 200px;
+	height: 280px;
+}
