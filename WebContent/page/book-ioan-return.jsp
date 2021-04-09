@@ -4,7 +4,7 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	String loan_request_query = "SELECT book_tbl.bookname, ioan_request_tbl.bookid as bookid, ioan_request_tbl.id as id from ioan_request_tbl, book_tbl, user_tbl where ioan_request_tbl.bookid = book_tbl.bookid and ioan_request_tbl.id = user_tbl.userid";
-	String return_request_query = "SELECT book_tbl.bookname, ioan_tbl.bookid as bookid, ioan_tbl.userid as id , ioan_tbl.ioanid from ioan_tbl, book_tbl, user_tbl, return_request_tbl where ioan_tbl.bookid = return_request_tbl.bookid and ioan_tbl.userid = user_tbl.userid and ioan_tbl.returnday is null";
+	String return_request_query = "SELECT book_tbl.bookname, return_request_tbl.bookid as bookid, return_request_tbl.id as id, ioan_tbl.ioanid from return_request_tbl, book_tbl, user_tbl , ioan_tbl where return_request_tbl.bookid = book_tbl.bookid and ioan_tbl.bookid = book_tbl.bookid and return_request_tbl.id = user_tbl.userid and ioan_tbl.returnday is null";
 	
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -77,7 +77,7 @@
 		                	</a>
 		                </td>
 		                <td>
-		                	<a href="../action/ioan-accept.jsp?bookid=<%=rs2.getInt("bookid")%>&userid=<%=rs2.getString("id")%>">
+		                	<a href="../action/return-delete.jsp?bookid=<%=rs2.getInt("bookid")%>&userid=<%=rs2.getString("id")%>">
 		                		<button type="button" class="btn btn-outline-primary btn-sm">삭제</button>
 		                	</a>
 		                </td>

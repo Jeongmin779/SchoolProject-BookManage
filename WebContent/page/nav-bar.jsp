@@ -12,9 +12,6 @@
           <a class="nav-link active" aria-current="page" href="mainpage.jsp">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">도서 검색</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="../user/user-booklist.jsp">도서 목록</a>
         </li>
         <li class="nav-item">

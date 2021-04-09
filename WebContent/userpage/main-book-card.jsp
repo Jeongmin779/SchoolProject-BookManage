@@ -3,9 +3,9 @@
         <%
 	request.setCharacterEncoding("UTF-8");
 	
-	String recently_book_list_query = "SELECT bookimg, author, bookname, bookid, publisher FROM (SELECT bookimg, author, bookname, bookid, publisher  from book_tbl order by bookid desc) where rownum <=5";
+	String recently_book_list_query = "SELECT bookimg, author, bookname, bookid, publisher, IOANSTATE FROM (SELECT bookimg, author, bookname, bookid, publisher, IOANSTATE from book_tbl order by bookid desc) where rownum <=5";
 	System.out.println(recently_book_list_query);
-	String popularity_book_list_query = "SELECT bookimg, author, bookname, bookid, publisher FROM book_tbl Where rownum <= 5 order by popularity desc";
+	String popularity_book_list_query = "SELECT bookimg, author, bookname, bookid, publisher, IOANSTATE FROM (SELECT bookimg, author, bookname, bookid, publisher, IOANSTATE, popularity from book_tbl  order by popularity desc)  where rownum <=5";
 	System.out.println(popularity_book_list_query);
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -28,9 +28,11 @@
 		        <em class="divi">|</em>
 		        <span class="card-text"><%=rs1.getString("publisher") %></span>
 	        </div>
-	        <a href="user/loan-book.jsp?bookid=<%=rs1.getInt("bookid")%>">
-				<button type="button" class="btn btn-outline-primary btn-sm">대여</button>
-			</a>
+	        <%if(rs1.getString("IOANSTATE") == null){ %>
+		        <button type="button" class="btn btn-outline-primary btn-sm" onclick="delete_check(<%=rs1.getString("bookid")%>)">대여요청</button>
+		        <%}else{ %>
+		        <button type="button" class="btn btn-outline-primary btn-sm" disabled>대여요청불가</button>
+		        <%}%>
 	      </div>
     	</div>
   	   </div>
@@ -49,9 +51,11 @@
 		        <em class="divi">|</em>
 		        <span class="card-text"><%=rs2.getString("publisher") %></span>
 	        </div>
-	        <a href="user/loan-book.jsp?bookid=<%=rs2.getInt("bookid")%>">
-				<button type="button" class="btn btn-outline-primary btn-sm">대여</button>
-			</a>
+	        <%if(rs2.getString("IOANSTATE") == null){ %>
+		        <button type="button" class="btn btn-outline-primary btn-sm" onclick="delete_check(<%=rs2.getString("bookid")%>)">대여요청</button>
+		        <%}else{ %>
+		        <button type="button" class="btn btn-outline-primary btn-sm" disabled>대여요청불가</button>
+		        <%}%>
 	      </div>
     	</div>
   	   </div>
@@ -65,3 +69,13 @@ conn.close();
 	System.out.println(recently_book_list_query);
 }
 %>
+<script>
+	function delete_check(bookid){
+		if(confirm("대여요청을 하시겠습니까?") == true){
+			location.href="../action/ioan-request.jsp?bookid="+bookid;
+		}
+		else{
+			return;
+		}
+	}
+</script>

@@ -65,3 +65,13 @@
 </body>
 </html>
 <script type="text/javascript" src="../js/nav.js?ver=1"></script> 
+<script>
+	function delete_check(bookid){
+		if(confirm("대여요청을 하시겠습니까?") == true){
+			location.href="../action/ioan-request.jsp?bookid="+bookid;
+		}
+		else{
+			return;
+		}
+	}
+</script>
