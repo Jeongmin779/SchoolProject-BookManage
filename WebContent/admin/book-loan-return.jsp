@@ -19,7 +19,7 @@
 <body>
 	<%@ include file="../page/admin-nav-bar.jsp" %>
 	<div class="main-container">
-	<%@ include file="../page/book-ioan-return.jsp" %>
+	<%@ include file="../page/book-loan-return.jsp" %>
 	</div>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
 <link rel="stylesheet" type="text/css" href="../css/main-container.css">
 <link rel="stylesheet" type="text/css" href="../css/book-manage.css">
-<link rel="stylesheet" type="text/css" href="../css/user-booklist.css">
+<link rel="stylesheet" type="text/css" href="../css/user-booklist.css?ver=1">
 <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </head>
 <body>

@@ -23,25 +23,25 @@ if(intmonth <= 9){
 String today = year + "-" + month + "-" + date;
 System.out.println(today);
 
-String ioan_insert_query = "INSERT INTO ioan_tbl(ioanid, userid, bookid, loanday) VALUES(ioan_id_seq.NEXTVAL, '%s', '%s', TO_DATE('%s','YYYY-MM-DD'))";
-System.out.println(String.format(ioan_insert_query, userid, bookid, today));
-String ioan_request_delete = "DELETE FROM ioan_request_tbl where id = '%s' and bookid = '%s'";
-System.out.println(String.format(ioan_request_delete, userid, bookid));
-String book_loan_status = "UPDATE book_tbl SET ioanstate = 'yes' where bookid = '%s'";
+String loan_insert_query = "INSERT INTO loan_tbl(loanid, userid, bookid, loanday) VALUES(loan_id_seq.NEXTVAL, '%s', '%s', TO_DATE('%s','YYYY-MM-DD'))";
+System.out.println(String.format(loan_insert_query, userid, bookid, today));
+String loan_request_delete = "DELETE FROM loan_request_tbl where id = '%s' and bookid = '%s'";
+System.out.println(String.format(loan_request_delete, userid, bookid));
+String book_loan_status = "UPDATE book_tbl SET loanstate = 'yes' where bookid = '%s'";
 System.out.println(String.format(book_loan_status, bookid));
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "min", "1234");
 		Statement stmt = conn.createStatement();
-		stmt.executeQuery(String.format(ioan_insert_query, userid, bookid, today));
+		stmt.executeQuery(String.format(loan_insert_query, userid, bookid, today));
 		Statement stmt2 = conn.createStatement();
-		stmt2.executeQuery(String.format(ioan_request_delete, userid, bookid));
+		stmt2.executeQuery(String.format(loan_request_delete, userid, bookid));
 		Statement stmt3 = conn.createStatement();
 		stmt3.executeQuery(String.format(book_loan_status, bookid));
 		System.out.println("연결에 성공했습니다.");
 		conn.commit();
 		conn.close();
-		response.sendRedirect("../admin/book-ioan-return.jsp");
+		response.sendRedirect("../admin/book-loan-return.jsp");
 	} catch(Exception e){
 		%>
 		<script>

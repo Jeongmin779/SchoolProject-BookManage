@@ -15,7 +15,7 @@
           <a class="nav-link" href="../user/user-booklist.jsp">도서 목록</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="../user/user-ioan-list.jsp">대여 목록</a>
+          <a class="nav-link" href="../user/user-loan-list.jsp">대여 목록</a>
         </li>
       </ul>
       	<form class="d-flex" action="search.jsp">

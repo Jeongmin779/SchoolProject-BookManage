@@ -21,7 +21,7 @@
           <a class="nav-link" href="user-insert.jsp">회원입력</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="book-ioan-return.jsp">대출관리</a>
+          <a class="nav-link" href="book-loan-return.jsp">대출관리</a>
         </li>
       </ul>
       <form class="d-flex">

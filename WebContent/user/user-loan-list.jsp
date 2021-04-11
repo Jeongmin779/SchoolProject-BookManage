@@ -16,7 +16,7 @@
 <body>
 	<%@ include file="../page/nav-bar.jsp" %>
 	<div class="main-container">
-	<%@ include file="../userpage/user-ioan-list.jsp" %>
+	<%@ include file="../userpage/user-loan-list.jsp" %>
 	</div>
 </body>
 </html>

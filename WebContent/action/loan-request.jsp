@@ -6,7 +6,7 @@ request.setCharacterEncoding("UTF-8");
 String bookid = request.getParameter("bookid");
 System.out.println(bookid);
 
-String book_loan_query = "INSERT INTO ioan_request_tbl(id, bookid) VALUES('%s', '%s')";
+String book_loan_query = "INSERT INTO loan_request_tbl(id, bookid) VALUES('%s', '%s')";
 System.out.println(String.format(book_loan_query, session.getAttribute("id"), bookid));
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");

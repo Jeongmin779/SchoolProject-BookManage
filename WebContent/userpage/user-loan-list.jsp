@@ -3,13 +3,14 @@
         <%
 	request.setCharacterEncoding("UTF-8");
 	
-	String recently_book_list_query = "SELECT book_tbl.bookimg as bookimg, book_tbl.author as author, book_tbl.bookname as bookname, book_tbl.bookid as bookid, book_tbl.publisher as publisher, ioanid from book_tbl, ioan_tbl where ioan_tbl.bookid = book_tbl.bookid and ioan_tbl.returnday is null order by ioan_tbl.ioanid asc";
-	System.out.println(recently_book_list_query);
+	String recently_book_list_query = "SELECT book_tbl.bookimg as bookimg, book_tbl.author as author, book_tbl.bookname as bookname, book_tbl.bookid as bookid, book_tbl.publisher as publisher, loanid from book_tbl, loan_tbl where loan_tbl.bookid = book_tbl.bookid and loan_tbl.userid = '%s' and loan_tbl.returnday is null order by loan_tbl.loanid asc";
+	System.out.println(session.getAttribute("id"));
+	System.out.println(String.format(recently_book_list_query, session.getAttribute("id")));
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
 		Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "min", "1234");
 		Statement stmt1 = conn.createStatement();
-		ResultSet rs1 = stmt1.executeQuery(recently_book_list_query);
+		ResultSet rs1 = stmt1.executeQuery(String.format(recently_book_list_query, session.getAttribute("id")));
 	%>
 	<h2 class="mt-4 mb-3">대여 목록</h2>
 	<% while (rs1.next()) {%>

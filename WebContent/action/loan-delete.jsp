@@ -6,7 +6,7 @@ request.setCharacterEncoding("UTF-8");
 String bookid = request.getParameter("bookid");
 String userid = request.getParameter("userid");
 
-String user_delete_query = "DELETE FROM ioan_request_tbl where id = '%s' and bookid = '%s'";
+String user_delete_query = "DELETE FROM loan_request_tbl where id = '%s' and bookid = '%s'";
 System.out.println(String.format(user_delete_query, userid, bookid));
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -16,7 +16,7 @@ System.out.println(String.format(user_delete_query, userid, bookid));
 		System.out.println("연결에 성공했습니다.");
 		conn.commit();
 		conn.close();
-		response.sendRedirect("../admin/book-ioan-return.jsp");
+		response.sendRedirect("../admin/book-loan-return.jsp");
 	} catch(Exception e){
 		%>
 		<script>

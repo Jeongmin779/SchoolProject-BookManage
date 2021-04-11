@@ -5,7 +5,7 @@
 request.setCharacterEncoding("UTF-8");
 String bookid = request.getParameter("bookid");
 String userid = request.getParameter("userid");
-String ioanid = request.getParameter("ioanid");
+String loanid = request.getParameter("loanid");
 Calendar cal = Calendar.getInstance();
 int year = cal.get(Calendar.YEAR);
 int intmonth = cal.get(Calendar.MONTH);
@@ -24,17 +24,17 @@ if(intmonth <= 9){
 String today = year + "-" + month + "-" + date;
 System.out.println(today);
 int count = 0;
-String return_insert_query = "UPDATE IOAN_TBL set returnday = TO_DATE('%s','YYYY-MM-DD') where ioanid = '%s'";
-System.out.println(String.format(return_insert_query, today, ioanid));
+String return_insert_query = "UPDATE loan_TBL set returnday = TO_DATE('%s','YYYY-MM-DD') where loanid = '%s'";
+System.out.println(String.format(return_insert_query, today, loanid));
 
 String return_request_delete = "DELETE FROM return_request_tbl where id = '%s' and bookid = '%s'";
 System.out.println(String.format(return_request_delete, userid, bookid));
 
-String book_return_status = "UPDATE book_tbl SET ioanstate = null where bookid = '%s'";
+String book_return_status = "UPDATE book_tbl SET loanstate = null where bookid = '%s'";
 System.out.println(String.format(book_return_status, bookid));
 
 
-String book_populary = "SELECT * from ioan_tbl where bookid = '%s'";
+String book_populary = "SELECT * from loan_tbl where bookid = '%s'";
 System.out.println(String.format(book_populary, bookid));
 
 
@@ -50,7 +50,7 @@ System.out.println(String.format(update_book_populary, count, bookid));
 		}
 		System.out.println(count);
 		Statement stmt = conn.createStatement();
-		stmt.executeQuery(String.format(return_insert_query, today, ioanid));
+		stmt.executeQuery(String.format(return_insert_query, today, loanid));
 		Statement stmt2 = conn.createStatement();
 		stmt2.executeQuery(String.format(return_request_delete, userid, bookid));
 		Statement stmt3 = conn.createStatement();
@@ -60,7 +60,7 @@ System.out.println(String.format(update_book_populary, count, bookid));
 		System.out.println("연결에 성공했습니다.");
 		conn.commit();
 		conn.close();
-		response.sendRedirect("../admin/book-ioan-return.jsp");
+		response.sendRedirect("../admin/book-loan-return.jsp");
 	} catch(Exception e){
 		%>
 		<script>

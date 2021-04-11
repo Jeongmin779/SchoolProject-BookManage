@@ -3,7 +3,7 @@
         <%
 	request.setCharacterEncoding("UTF-8");
 	
-	String recently_book_list_query = "SELECT bookimg, author, bookname, bookid, publisher, IOANSTATE from book_tbl order by bookid asc";
+	String recently_book_list_query = "SELECT bookimg, author, bookname, bookid, publisher, loanSTATE from book_tbl order by bookid asc";
 	System.out.println(recently_book_list_query);
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -27,7 +27,7 @@
 		        <em class="divi">|</em>
 		        <span class="card-text"><%=rs1.getString("publisher") %></span>
 	        </div>
-	        <%if(rs1.getString("IOANSTATE") == null){ %>
+	        <%if(rs1.getString("loanSTATE") == null){ %>
 	        <button type="button" class="btn btn-outline-primary btn-sm" onclick="delete_check(<%=rs1.getString("bookid")%>)">대여요청</button>
 	        <%}else{ %>
 	        <button type="button" class="btn btn-outline-primary btn-sm" disabled>대여요청불가</button>
@@ -48,7 +48,7 @@ conn.close();
 <script>
 	function delete_check(bookid){
 		if(confirm("대여요청을 하시겠습니까?") == true){
-			location.href="../action/ioan-request.jsp?bookid="+bookid;
+			location.href="../action/loan-request.jsp?bookid="+bookid;
 		}
 		else{
 			return;

@@ -3,8 +3,8 @@
     <%
 	request.setCharacterEncoding("UTF-8");
 	
-	String loan_request_query = "SELECT book_tbl.bookname, ioan_request_tbl.bookid as bookid, ioan_request_tbl.id as id from ioan_request_tbl, book_tbl, user_tbl where ioan_request_tbl.bookid = book_tbl.bookid and ioan_request_tbl.id = user_tbl.userid";
-	String return_request_query = "SELECT book_tbl.bookname, return_request_tbl.bookid as bookid, return_request_tbl.id as id, ioan_tbl.ioanid from return_request_tbl, book_tbl, user_tbl , ioan_tbl where return_request_tbl.bookid = book_tbl.bookid and ioan_tbl.bookid = book_tbl.bookid and return_request_tbl.id = user_tbl.userid and ioan_tbl.returnday is null";
+	String loan_request_query = "SELECT book_tbl.bookname, loan_request_tbl.bookid as bookid, loan_request_tbl.id as id from loan_request_tbl, book_tbl, user_tbl where loan_request_tbl.bookid = book_tbl.bookid and loan_request_tbl.id = user_tbl.userid";
+	String return_request_query = "SELECT book_tbl.bookname, return_request_tbl.bookid as bookid, return_request_tbl.id as id, loan_tbl.loanid from return_request_tbl, book_tbl, user_tbl , loan_tbl where return_request_tbl.bookid = book_tbl.bookid and loan_tbl.bookid = book_tbl.bookid and return_request_tbl.id = user_tbl.userid and loan_tbl.returnday is null";
 	
 	try{
 		Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -35,12 +35,12 @@
 		                <td><%=rs1.getString("bookname") %></td>
 		                <td><%=rs1.getString("id") %></td>
 		                <td>
-		                	<a href="../action/ioan-accept.jsp?bookid=<%=rs1.getInt("bookid")%>&userid=<%=rs1.getString("id")%>">
+		                	<a href="../action/loan-accept.jsp?bookid=<%=rs1.getInt("bookid")%>&userid=<%=rs1.getString("id")%>">
 		                		<button type="button" class="btn btn-outline-primary btn-sm">요청수락</button>
 		                	</a>
 		                </td>
 		                <td>
-		                	<a href="../action/ioan-delete.jsp?bookid=<%=rs1.getInt("bookid")%>&userid=<%=rs1.getString("id")%>">
+		                	<a href="../action/loan-delete.jsp?bookid=<%=rs1.getInt("bookid")%>&userid=<%=rs1.getString("id")%>">
 		                		<button type="button" class="btn btn-outline-primary btn-sm">삭제</button>
 		                	</a>
 		                </td>
@@ -72,7 +72,7 @@
 		                <td><%=rs2.getString("bookname") %></td>
 		                <td><%=rs2.getString("id") %></td>
 		                <td>
-		                	<a href="../action/return-accept.jsp?bookid=<%=rs2.getInt("bookid")%>&userid=<%=rs2.getString("id")%>&ioanid=<%=rs2.getString("ioanid")%>">
+		                	<a href="../action/return-accept.jsp?bookid=<%=rs2.getInt("bookid")%>&userid=<%=rs2.getString("id")%>&loanid=<%=rs2.getString("loanid")%>">
 		                		<button type="button" class="btn btn-outline-primary btn-sm">요청수락</button>
 		                	</a>
 		                </td>
