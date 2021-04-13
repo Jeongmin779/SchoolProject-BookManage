@@ -17,9 +17,6 @@
         <li class="nav-item">
           <a class="nav-link" href="../user/user-loan-list.jsp">대여 목록</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="../user/user-loan-list.jsp">대여했던 책 목록</a>
-        </li>
       </ul>
       	<form class="d-flex" action="search.jsp">
           <input class="form-control me-2" type="text" placeholder="Search" aria-label="Search" name="search">
