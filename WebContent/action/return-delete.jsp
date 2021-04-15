@@ -16,7 +16,7 @@ System.out.println(String.format(user_delete_query, userid, bookid));
 		System.out.println("연결에 성공했습니다.");
 		conn.commit();
 		conn.close();
-		response.sendRedirect("../admin/book-ioan-return.jsp");
+		response.sendRedirect("../admin/book-loan-return.jsp");
 	} catch(Exception e){
 		%>
 		<script>
