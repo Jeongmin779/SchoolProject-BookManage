@@ -37,7 +37,7 @@
             <ion-icon name="person-outline"></ion-icon>
           </a>
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarScrollingDropdown" data-bs-popper="none">
-            <li><a class="dropdown-item" href="../userlogin.jsp">로그아웃</a></li>
+            <li><a class="dropdown-item" href="../userlogin.jsp">로그아웃d</a></li>
           </ul>
         </li>
 	  </ul>
